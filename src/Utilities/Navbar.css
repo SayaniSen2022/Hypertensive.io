@@ -1,0 +1,41 @@
+.top-nav {
+  position: sticky;
+  top: 0;
+  background-color: #303b52;
+  width: 100vw;
+}
+.symbol {
+  font-size: 30px;
+  font-weight: 700;
+  font-family: "Fira Sans";
+  float: left;
+  margin-left: 10px;
+  color: #d4e0e7;
+}
+.symbol:hover {
+  color: #b5a1ff;
+}
+
+.nav {
+  display: flex;
+  list-style: none;
+  font-size: 20px;
+  font-weight: 400;
+  font-family: "Fira Sans";
+  text-align: center;
+}
+
+.nav li {
+  width: 125px;
+  padding: 10px;
+  color: #d4e0e7;
+}
+.nav li:hover {
+  color: #b5a1ff;
+}
+.icon {
+  color: rgb(212, 224, 231);
+}
+.toggle-btn {
+  float: right;
+}
