@@ -1,49 +1,29 @@
-import React, { useState } from "react";
-import {
-  Chart as ChartJS,
-  LineElement,
-  CategoryScale,
-  LinearScale,
-  PointElement,
-} from "chart.js/auto";
-import { Line, Bar } from "react-chartjs-2";
+import React from "react";
 
-ChartJS.register(LineElement, CategoryScale, LinearScale, PointElement);
+import LineChart from "./LineChart";
+import PieChart from "./PieChart";
+import { Select } from "@chakra-ui/react";
 
 const Statistics = () => {
-  const [readingData, setReadingData] = useState(
-    JSON.parse(localStorage.getItem("readingData"))
-  );
-  console.log(readingData);
-
-  const labels = readingData.map((data) => data.date);
-  const data = {
-    labels: labels,
-    datasets: [
-      {
-        label: "Systolic Pressure",
-        backgroundColor: "red",
-        borderColor: "black",
-        pointerBorderColor: "aqua",
-        data: readingData.map((data) => data.systolic),
-      },
-    ],
-  };
-  const options = {
-    plugins: {
-      legend: true,
-    },
-    scales: {
-      y: {
-        min: 0,
-        max: 200,
-      },
-    },
-  };
   return (
-    <div>
-      <Line data={data} options={options}></Line>
-    </div>
+    <>
+      <div>
+        <Select
+          width="10%"
+          variant="outline"
+          borderColor="blue.800"
+          color="grey"
+          size="xs"
+          ml="1"
+          my="2"
+        >
+          <option value="option1">Last 30 days</option>
+          <option value="option2">All</option>
+        </Select>
+      </div>
+      <LineChart />
+      <PieChart />
+    </>
   );
 };
 export default Statistics;

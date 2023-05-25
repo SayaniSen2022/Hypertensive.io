@@ -9,6 +9,7 @@ import { format } from "date-fns";
 import InputModal from "./InputModal";
 import "./InputModal.css";
 import { Alert, AlertIcon } from "@chakra-ui/react";
+import testData from "../../Data/TestData";
 
 import {
   Table,
@@ -20,26 +21,27 @@ import {
   TableContainer,
 } from "@chakra-ui/react";
 
-const getLocalData = () => {
-  let localData = JSON.parse(localStorage.getItem("readingData"));
+// const getLocalData = () => {
+//   let localData = JSON.parse(localStorage.getItem("readingData"));
 
-  if (localData) {
-    localData = localData.map((e) => {
-      e.date = new Date(e.date);
-      return e;
-    });
-    return localData;
-  } else {
-    return [];
-  }
-};
+//   if (localData) {
+//     localData = localData.map((e) => {
+//       e.date = new Date(e.date);
+//       return e;
+//     });
+//     return localData;
+//   } else {
+//     return [];
+//   }
+// };
 
 const Readings = () => {
-  const [readings, setReadings] = useState(getLocalData());
+  const [readings, setReadings] = useState(testData);
 
   useEffect(() => {
     localStorage.setItem("readingData", JSON.stringify(readings));
-  }, [readings]);
+  }, []);
+  console.log(localStorage.getItem("readingData"));
 
   const modalRef = useRef();
 
@@ -86,25 +88,21 @@ const Readings = () => {
                 {readings.map((reading) => {
                   return (
                     <Tr key={reading.id}>
-                      <Td color="brand.100">
-                        {format(reading.date, "dd/MM/yyyy")}
-                      </Td>
-                      <Td color="brand.100">
-                        {format(reading.date, "h:mm aa")}
+                      <Td color="brand.100">{reading.Date}</Td>
+                      <Td color="brand.100">{reading.Time}</Td>
+                      <Td color="brand.100" isNumeric>
+                        {reading.Systolic}
                       </Td>
                       <Td color="brand.100" isNumeric>
-                        {reading.systolic}
+                        {reading.Diastolic}
                       </Td>
                       <Td color="brand.100" isNumeric>
-                        {reading.diastolic}
-                      </Td>
-                      <Td color="brand.100" isNumeric>
-                        {reading.pulse}
+                        {reading.Pulse}
                       </Td>
                       <Td color="brand.100">
                         {reading.irregularBeats ? "yes" : "no"}
                       </Td>
-                      <Td color="brand.100">{reading.notes}</Td>
+                      <Td color="brand.100">{reading.Note}</Td>
                       <Td color="brand.100">
                         <IconContext.Provider
                           value={{ className: "delete-icon" }}
