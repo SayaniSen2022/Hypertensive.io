@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "./PieChart.css";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend, Title } from "chart.js";
 import { Pie } from "react-chartjs-2";
 
@@ -15,11 +16,40 @@ const getReadingCategory = (reading) => {
   ) {
     return "Normal";
   } else if (
+    reading.Systolic >= 130 &&
+    reading.Systolic < 140 &&
+    reading.Diastolic < 90 &&
+    reading.Diastolic >= 85
+  ) {
+    return "High Normal";
+  } else if (
     reading.Systolic >= 140 &&
-    reading.Systolic <= 159 &&
+    reading.Systolic < 160 &&
+    reading.Diastolic >= 90 &&
+    reading.Diastolic < 100
+  ) {
+    return "HYPERTENSION STAGE 1";
+  } else if (
+    reading.Systolic >= 160 &&
+    reading.Systolic < 180 &&
+    reading.Diastolic >= 100 &&
+    reading.Diastolic < 110
+  ) {
+    return "HYPERTENSION STAGE 2";
+  } else if (reading.Systolic >= 180 && reading.Diastolic >= 110) {
+    return "HYPERTENSION STAGE 3";
+  } else if (
+    reading.Systolic >= 140 &&
+    reading.Systolic < 160 &&
     reading.Diastolic < 90
   ) {
-    return "Grade 1 Isolated Systolic Hypertension";
+    return "Isolated Systolic Hypertension Grade 1";
+  } else if (
+    reading.Systolic >= 160 &&
+    reading.Systolic < 160 &&
+    reading.Diastolic < 90
+  ) {
+    return "Isolated Systolic Hypertension Grade 2";
   }
 };
 
@@ -27,21 +57,6 @@ const PieChart = () => {
   const [readingData] = useState(
     JSON.parse(localStorage.getItem("readingData"))
   );
-  // console.log(readingData.length);
-  // console.log(
-  //   "Optimal :",
-  //   readingData.filter((element) => element.Category === "Optimal").length
-  // );
-  // console.log(
-  //   "Normal :",
-  //   readingData.filter((element) => element.Category === "Normal").length
-  // );
-  // console.log(
-  //   "G :",
-  //   readingData.filter(
-  //     (element) => element.Category === "Grade 1 Isolated Systolic Hypertension"
-  //   ).length
-  // );
 
   let catMap = new Map();
 
@@ -55,26 +70,60 @@ const PieChart = () => {
   }
 
   const data = {
-    labels: ["Normal", "Optimal", "Grade 1 Isolated Systolic Hypertension"],
+    labels: [
+      "Optimal",
+      "Normal",
+      "High Normal",
+      "HYPERTENSION STAGE 1",
+      "HYPERTENSION STAGE 2",
+      "HYPERTENSION STAGE 3",
+      "Isolated Systolic Hypertension Grade 1",
+      "Isolated Systolic Hypertension Grade 2",
+    ],
     datasets: [
       {
         data: [
-          catMap.get("Normal"),
           catMap.get("Optimal"),
-          catMap.get("Grade 1 Isolated Systolic Hypertension"),
+          catMap.get("Normal"),
+          catMap.get("High Normal"),
+          catMap.get("HYPERTENSION STAGE 1"),
+          catMap.get("HYPERTENSION STAGE 2"),
+          catMap.get("HYPERTENSION STAGE 3"),
+          catMap.get("Isolated Systolic Hypertension Grade 1"),
+          catMap.get("Isolated Systolic Hypertension Grade 2"),
         ],
         backgroundColor: [
-          "rgb(255, 99, 132)",
-          "rgb(54, 162, 235)",
-          "rgb(255, 205, 86)",
+          "#2C5E1A",
+          "#9ACD32",
+          "yellow",
+          "orange",
+          "#750000",
+          "#A30000",
+          "#FF2E2E",
+          "#D10000",
         ],
         hoverOffset: 4,
       },
     ],
   };
+
+  const options = {
+    plugins: {
+      legend: {
+        display: true,
+        position: "bottom",
+        align: "start",
+      },
+      tooltip: true,
+    },
+    layout: {
+      autoPadding: true,
+    },
+  };
+
   return (
-    <div style={{ padding: "20px", width: "50%" }}>
-      <Pie data={data}></Pie>
+    <div className="pie">
+      <Pie data={data} options={options}></Pie>
     </div>
   );
 };

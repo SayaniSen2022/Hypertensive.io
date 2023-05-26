@@ -12,8 +12,8 @@ const Navbar = () => {
     <>
       <nav className="top-nav">
         <span className="symbol">
-          <NavLink to="/">
-            <IconContext.Provider value={{ className: "top-react-icons" }}>
+          <NavLink to="/" className="flex ">
+            <IconContext.Provider value={{ className: "top-react-icons m-2" }}>
               <BsSuitHeartFill style={{ color: "#b5a1ff" }} />
             </IconContext.Provider>
             Hypertensive.io
@@ -21,7 +21,7 @@ const Navbar = () => {
         </span>
         <ul className="nav">
           <li>
-            <NavLink to="/readings">
+            <NavLink to="/readings" className="flex">
               <IconContext.Provider value={{ className: "top-react-icons" }}>
                 <AiOutlineDatabase className="icon" />
               </IconContext.Provider>
@@ -29,7 +29,7 @@ const Navbar = () => {
             </NavLink>
           </li>
           <li>
-            <NavLink to="/statistics">
+            <NavLink to="/statistics" className="flex">
               <IconContext.Provider value={{ className: "top-react-icons" }}>
                 <BsClipboardData className="icon" />
               </IconContext.Provider>

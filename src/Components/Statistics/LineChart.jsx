@@ -23,29 +23,35 @@ const LineChart = () => {
     datasets: [
       {
         label: "Systolic Pressure",
-        backgroundColor: "orange",
-        borderColor: "orange",
+        borderColor: "red",
+        pointStyle: false,
         data: readingData.map((data) => data.Systolic),
       },
       {
         label: "Diastolic Pressure",
-        backgroundColor: "lightgreen",
-        borderColor: "lightgreen",
-        pointerBorderColor: "black",
+        borderColor: "blue",
+        pointStyle: false,
         data: readingData.map((data) => data.Diastolic),
       },
       {
         label: "Pulse",
-        backgroundColor: "yellow",
-        borderColor: "yellow",
-        pointerBorderColor: "black",
+        borderColor: "magenta",
+        pointStyle: false,
         data: readingData.map((data) => data.Pulse),
       },
     ],
+    tension: 0.025,
   };
   const options = {
     plugins: {
-      legend: true,
+      legend: {
+        display: true,
+        position: "bottom",
+        align: "centre",
+      },
+    },
+    layout: {
+      autoPadding: true,
     },
     scales: {
       y: {

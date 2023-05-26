@@ -3,6 +3,7 @@ import React from "react";
 import LineChart from "./LineChart";
 import PieChart from "./PieChart";
 import { Select } from "@chakra-ui/react";
+import "./Statistics.css";
 
 const Statistics = () => {
   return (
@@ -21,8 +22,10 @@ const Statistics = () => {
           <option value="option2">All</option>
         </Select>
       </div>
-      <LineChart />
-      <PieChart />
+      <div className="chart-display">
+        <LineChart />
+        <PieChart />
+      </div>
     </>
   );
 };

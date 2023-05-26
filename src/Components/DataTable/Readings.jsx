@@ -41,7 +41,7 @@ const Readings = () => {
   useEffect(() => {
     localStorage.setItem("readingData", JSON.stringify(readings));
   }, []);
-  console.log(localStorage.getItem("readingData"));
+  // console.log(localStorage.getItem("readingData"));
 
   const modalRef = useRef();
 
@@ -88,7 +88,9 @@ const Readings = () => {
                 {readings.map((reading) => {
                   return (
                     <Tr key={reading.id}>
-                      <Td color="brand.100">{reading.Date}</Td>
+                      <Td color="brand.100">
+                        {format(new Date(reading.Date), "dd/MM/yyyy")}
+                      </Td>
                       <Td color="brand.100">{reading.Time}</Td>
                       <Td color="brand.100" isNumeric>
                         {reading.Systolic}
