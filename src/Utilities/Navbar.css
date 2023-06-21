@@ -1,41 +1,34 @@
 .top-nav {
   position: sticky;
   top: 0;
-  background-color: #303b52;
-  width: 100vw;
+  padding: 0.25em;
 }
-.symbol {
+.logo {
   font-size: 30px;
   font-weight: 700;
   font-family: "Fira Sans";
   float: left;
-  margin-left: 10px;
-  color: #d4e0e7;
+  /* color: #d4e0e7; */
 }
-.symbol:hover {
+.logo:hover {
   color: #b5a1ff;
 }
 
 .nav {
   display: flex;
-  list-style: none;
+  /* list-style: none; */
   font-size: 20px;
-  font-weight: 400;
-  font-family: "Fira Sans";
-  text-align: center;
 }
 
 .nav li {
-  width: 125px;
-  padding: 10px;
-  color: #d4e0e7;
+  width: 7em;
+  padding: 0.5em;
+  /* color: #d4e0e7; */
 }
 .nav li:hover {
   color: #b5a1ff;
 }
-.icon {
-  color: rgb(212, 224, 231);
-}
-.toggle-btn {
-  float: right;
+.top-react-icons {
+  margin-right: 3px;
+  margin-top: 3px;
 }

@@ -12,12 +12,8 @@ import { Line } from "react-chartjs-2";
 
 ChartJS.register(LineElement, CategoryScale, LinearScale, PointElement);
 
-const LineChart = () => {
-  const [readingData] = useState(
-    JSON.parse(localStorage.getItem("readingData"))
-  );
-
-  const labels = readingData.map((data) => data.Date);
+const LineChart = (props) => {
+  const labels = props.chartData.map((data) => data.date);
   const data = {
     labels: labels,
     datasets: [
@@ -25,19 +21,19 @@ const LineChart = () => {
         label: "Systolic Pressure",
         borderColor: "red",
         pointStyle: false,
-        data: readingData.map((data) => data.Systolic),
+        data: props.chartData.map((data) => data.systolic),
       },
       {
         label: "Diastolic Pressure",
         borderColor: "blue",
         pointStyle: false,
-        data: readingData.map((data) => data.Diastolic),
+        data: props.chartData.map((data) => data.diastolic),
       },
       {
         label: "Pulse",
         borderColor: "magenta",
         pointStyle: false,
-        data: readingData.map((data) => data.Pulse),
+        data: props.chartData.map((data) => data.pulse),
       },
     ],
     tension: 0.025,

@@ -6,11 +6,16 @@ const theme = {
     useSystemColorMode: true,
   },
   colors: {
-    brand: {
-      100: "#6699CC",
-      200: "#2E8BC0",
+    light: {
+      primary: "#000000",
+      secondary: "#000000",
+    },
+    dark: {
+      primary: "#ffffff",
+      secondary: "#ffffff",
     },
   },
+
   styles: {
     global: {
       body: {

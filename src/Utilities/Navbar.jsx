@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { IconContext } from "react-icons";
 import { NavLink } from "react-router-dom";
 import { AiOutlineDatabase } from "react-icons/ai";
@@ -8,11 +8,12 @@ import "./Navbar.css";
 import ToggleColor from "../Theme/ToggleColor";
 
 const Navbar = () => {
+  const [showMenu, setShowMenu] = useState(false);
   return (
     <>
       <nav className="top-nav">
-        <span className="symbol">
-          <NavLink to="/" className="flex ">
+        <span className="logo">
+          <NavLink to="/" className="flex">
             <IconContext.Provider value={{ className: "top-react-icons m-2" }}>
               <BsSuitHeartFill style={{ color: "#b5a1ff" }} />
             </IconContext.Provider>
@@ -23,7 +24,7 @@ const Navbar = () => {
           <li>
             <NavLink to="/readings" className="flex">
               <IconContext.Provider value={{ className: "top-react-icons" }}>
-                <AiOutlineDatabase className="icon" />
+                <AiOutlineDatabase style={{ color: "#FFCD58" }} />
               </IconContext.Provider>
               Readings
             </NavLink>
@@ -31,7 +32,7 @@ const Navbar = () => {
           <li>
             <NavLink to="/statistics" className="flex">
               <IconContext.Provider value={{ className: "top-react-icons" }}>
-                <BsClipboardData className="icon" />
+                <BsClipboardData style={{ color: "#719F1E" }} />
               </IconContext.Provider>
               Statistics
             </NavLink>

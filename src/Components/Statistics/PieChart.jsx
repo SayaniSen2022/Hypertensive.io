@@ -6,61 +6,61 @@ import { Pie } from "react-chartjs-2";
 ChartJS.register(ArcElement, Tooltip, Legend, Title);
 
 const getReadingCategory = (reading) => {
-  if (reading.Systolic < 120 && reading.Diastolic < 80) {
+  if (reading.systolic < 120 && reading.diastolic < 80) {
     return "Optimal";
   } else if (
-    reading.Systolic < 130 &&
-    reading.Systolic >= 120 &&
-    reading.Diastolic < 85 &&
-    reading.Diastolic >= 80
+    reading.systolic < 130 &&
+    reading.systolic >= 120 &&
+    reading.diastolic < 85 &&
+    reading.diastolic >= 80
   ) {
     return "Normal";
   } else if (
-    reading.Systolic >= 130 &&
-    reading.Systolic < 140 &&
-    reading.Diastolic < 90 &&
-    reading.Diastolic >= 85
+    reading.systolic >= 130 &&
+    reading.systolic < 140 &&
+    reading.diastolic < 90 &&
+    reading.diastolic >= 85
   ) {
     return "High Normal";
   } else if (
-    reading.Systolic >= 140 &&
-    reading.Systolic < 160 &&
-    reading.Diastolic >= 90 &&
-    reading.Diastolic < 100
+    reading.systolic >= 140 &&
+    reading.systolic < 160 &&
+    reading.diastolic >= 90 &&
+    reading.diastolic < 100
   ) {
     return "HYPERTENSION STAGE 1";
   } else if (
-    reading.Systolic >= 160 &&
-    reading.Systolic < 180 &&
-    reading.Diastolic >= 100 &&
-    reading.Diastolic < 110
+    reading.systolic >= 160 &&
+    reading.systolic < 180 &&
+    reading.diastolic >= 100 &&
+    reading.diastolic < 110
   ) {
     return "HYPERTENSION STAGE 2";
-  } else if (reading.Systolic >= 180 && reading.Diastolic >= 110) {
+  } else if (reading.systolic >= 180 && reading.diastolic >= 110) {
     return "HYPERTENSION STAGE 3";
   } else if (
-    reading.Systolic >= 140 &&
-    reading.Systolic < 160 &&
-    reading.Diastolic < 90
+    reading.systolic >= 140 &&
+    reading.systolic < 160 &&
+    reading.diastolic < 90
   ) {
     return "Isolated Systolic Hypertension Grade 1";
   } else if (
-    reading.Systolic >= 160 &&
-    reading.Systolic < 160 &&
-    reading.Diastolic < 90
+    reading.systolic >= 160 &&
+    reading.systolic < 180 &&
+    reading.diastolic < 90
   ) {
     return "Isolated Systolic Hypertension Grade 2";
   }
 };
 
-const PieChart = () => {
-  const [readingData] = useState(
-    JSON.parse(localStorage.getItem("readingData"))
-  );
+const PieChart = (props) => {
+  // const [readingData] = useState(
+  //   JSON.parse(localStorage.getItem("readingData"))
+  // );
 
   let catMap = new Map();
 
-  for (let reading of readingData) {
+  for (let reading of props.chartData) {
     let readingCategory = getReadingCategory(reading);
     if (catMap.has(readingCategory)) {
       catMap.set(readingCategory, catMap.get(readingCategory) + 1);

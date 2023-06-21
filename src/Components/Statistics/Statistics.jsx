@@ -1,30 +1,46 @@
-import React from "react";
-
+import React, { useState } from "react";
 import LineChart from "./LineChart";
 import PieChart from "./PieChart";
-import { Select } from "@chakra-ui/react";
+import FilterData from "./FilterData";
 import "./Statistics.css";
 
 const Statistics = () => {
+  const [data] = useState(JSON.parse(localStorage.getItem("readingData")));
+  console.log(data);
+
+  const [selectedValue, setSelectedValue] = useState("-1");
+
+  const filteredList = data.filter((item) => {
+    let today = new Date();
+    if (selectedValue === "-1") {
+      return true;
+    } else if (selectedValue === "7") {
+      today.setDate(today.getDate() - 7);
+      return (
+        new Date(item.date).getTime() < new Date().getTime() &&
+        new Date(item.date).getTime() > today.getTime()
+      );
+    } else {
+      today.setDate(today.getDate() - 30);
+      return (
+        new Date(item.date).getTime() < new Date().getTime() &&
+        new Date(item.date).getTime() > today.getTime()
+      );
+    }
+  });
+  console.log(filteredList);
+
+  const onFilterValueSelected = (dateRef) => {
+    setSelectedValue(dateRef);
+  };
+
   return (
     <>
-      <div>
-        <Select
-          width="10%"
-          variant="outline"
-          borderColor="blue.800"
-          color="grey"
-          size="xs"
-          ml="1"
-          my="2"
-        >
-          <option value="option1">Last 30 days</option>
-          <option value="option2">All</option>
-        </Select>
-      </div>
+      <FilterData filterValueSelected={onFilterValueSelected} />
       <div className="chart-display">
-        <LineChart />
-        <PieChart />
+        <LineChart chartData={filteredList} />
+
+        <PieChart chartData={filteredList} />
       </div>
     </>
   );

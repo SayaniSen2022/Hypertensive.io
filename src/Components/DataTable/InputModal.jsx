@@ -16,6 +16,7 @@ import {
   FormControl,
   FormLabel,
   useDisclosure,
+  Textarea,
 } from "@chakra-ui/react";
 import "./InputModal.css";
 
@@ -29,6 +30,11 @@ const InputModal = forwardRef((props, ref) => {
 
   const onAddReading = () => {
     onOpen();
+    setSystolic("");
+    setDiastolic("");
+    setPulse("");
+    setNotes("");
+    setIsIrregular(false);
   };
 
   const onEditReading = (reading) => {
@@ -66,13 +72,37 @@ const InputModal = forwardRef((props, ref) => {
     setPulse(event.target.value);
   };
   const notesChangeHandler = (event) => {
-    setNotes(event.target.value);
+    const textdata = event.target.value;
+    console.log(textdata.length);
+    if (textdata.length > 50) {
+      return alert("Notes cannot exceed more than 50 characters in length!");
+    } else {
+      setNotes(textdata);
+    }
   };
   const heartBeatHandler = () => {
     setIsIrregular(!isIrregular);
   };
+  // const handleEditSubmit = () => {
+  //   onClose();
+  //   props.editReadings(createEditedDataObject());
+  //   resetReadings();
+  // };
+  // const createEditedDataObject = () => {
+  //   const editedData = {
+  //     id: props.totalReadings,
+  //     systolic: parseInt(systolic),
+  //     diastolic: parseInt(diastolic),
+  //     pulse: parseInt(pulse),
+  //     date: startDate,
+  //     notes: notes,
+  //     irregularBeats: isIrregular,
+  //   };
+  //   return editedData;
+  // };
 
   const handleSubmit = () => {
+    //need to add some logic to check if its a new reading or an edited reading
     onClose();
     props.addReadings(createNewDataObject());
 
@@ -175,7 +205,8 @@ const InputModal = forwardRef((props, ref) => {
             <FormLabel color="brand.100" optionalIndicator>
               Notes
             </FormLabel>
-            <Input
+            <Textarea
+              size="sm"
               placeholder="Enter remarks..."
               value={notes}
               onChange={notesChangeHandler}
@@ -203,6 +234,14 @@ const InputModal = forwardRef((props, ref) => {
             >
               Save
             </Button>
+            {/* <Button
+              className="save-edit-btn"
+              type="submit"
+              colorScheme="green"
+              onClick={handleEditSubmit}
+            >
+              Save Edit
+            </Button> */}
           </ModalFooter>
         </ModalContent>
       </Modal>

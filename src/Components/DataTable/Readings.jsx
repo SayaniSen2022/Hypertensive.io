@@ -9,7 +9,7 @@ import { format } from "date-fns";
 import InputModal from "./InputModal";
 import "./InputModal.css";
 import { Alert, AlertIcon } from "@chakra-ui/react";
-import testData from "../../Data/TestData";
+import "./Readings.css";
 
 import {
   Table,
@@ -21,31 +21,57 @@ import {
   TableContainer,
 } from "@chakra-ui/react";
 
-// const getLocalData = () => {
-//   let localData = JSON.parse(localStorage.getItem("readingData"));
+const getLocalData = () => {
+  let isLoggedIn = false;
+  if (isLoggedIn === false) {
+    let localData = JSON.parse(localStorage.getItem("readingData"));
+    console.log(localData);
 
-//   if (localData) {
-//     localData = localData.map((e) => {
-//       e.date = new Date(e.date);
-//       return e;
-//     });
-//     return localData;
-//   } else {
-//     return [];
-//   }
-// };
+    if (localData) {
+      localData = localData.map((e) => {
+        e.date = new Date(e.date);
+        return e;
+      });
+      return localData;
+    } else {
+      return [];
+    }
+  }
+  //need to fetch data from API if isLoggedIn will be true
+  /*
+    fetch('api path').then(res => {
+      if(res){
+        return res.json()
+      }
+      else{
+        throw new Error("no data")
+      }
+    }).then(data=>{}).catch(err => {console.error(err);});
+  */
+};
 
 const Readings = () => {
-  const [readings, setReadings] = useState(testData);
+  const [readings, setReadings] = useState(getLocalData());
 
   useEffect(() => {
     localStorage.setItem("readingData", JSON.stringify(readings));
-  }, []);
+  }, [readings]);
   // console.log(localStorage.getItem("readingData"));
 
   const modalRef = useRef();
 
   const toast = useToast();
+
+  // const editReading = (editedReading) => {
+  //   setReadings([...readings, editedReading]);
+  //   toast({
+  //     title: "Success!",
+  //     description: "New reading edited successfully.",
+  //     status: "success",
+  //     duration: 2000,
+  //     isClosable: true,
+  //   });
+  // };
 
   const addReadings = (newReading) => {
     setReadings([...readings, newReading]);
@@ -70,16 +96,22 @@ const Readings = () => {
       {readings.length > 0 && (
         <div>
           <TableContainer className="p-2 border-2 rounded m-2">
-            <Table className="table " size="sm">
-              <Thead className="table-head">
+            <Table size="sm">
+              <Thead>
                 <Tr>
-                  <Th>Date</Th>
-                  <Th>Time</Th>
-                  <Th isNumeric>Systolic</Th>
-                  <Th isNumeric>Diastolic</Th>
-                  <Th isNumeric>Pulse</Th>
-                  <Th>Irregular Heartbeat</Th>
-                  <Th>Notes</Th>
+                  <Th className="table-head">Date</Th>
+                  <Th className="table-head">Time</Th>
+                  <Th className="table-head" isNumeric>
+                    Systolic
+                  </Th>
+                  <Th className="table-head" isNumeric>
+                    Diastolic
+                  </Th>
+                  <Th className="table-head" isNumeric>
+                    Pulse
+                  </Th>
+                  <Th className="table-head">Irregular Heartbeat</Th>
+                  <Th className="table-head">Notes</Th>
                   <Th>Delete</Th>
                   <Th>Edit</Th>
                 </Tr>
@@ -88,23 +120,35 @@ const Readings = () => {
                 {readings.map((reading) => {
                   return (
                     <Tr key={reading.id}>
-                      <Td color="brand.100">
-                        {format(new Date(reading.Date), "dd/MM/yyyy")}
+                      <Td color="brand.100" className="table-details">
+                        {format(reading.date, "dd/MM/yyyy")}
                       </Td>
-                      <Td color="brand.100">{reading.Time}</Td>
-                      <Td color="brand.100" isNumeric>
-                        {reading.Systolic}
+                      <Td color="brand.100" className="table-details">
+                        {format(reading.date, "h:mm aa")}
                       </Td>
-                      <Td color="brand.100" isNumeric>
-                        {reading.Diastolic}
+                      <Td color="brand.100" isNumeric className="table-details">
+                        {reading.systolic}
                       </Td>
-                      <Td color="brand.100" isNumeric>
-                        {reading.Pulse}
+                      <Td color="brand.100" isNumeric className="table-details">
+                        {reading.diastolic}
                       </Td>
-                      <Td color="brand.100">
+                      <Td color="brand.100" isNumeric className="table-details">
+                        {reading.pulse}
+                      </Td>
+                      <Td
+                        className="table-details"
+                        style={{
+                          color:
+                            reading.irregularBeats === true
+                              ? "#FF5C5C"
+                              : "lightgreen",
+                        }}
+                      >
                         {reading.irregularBeats ? "yes" : "no"}
                       </Td>
-                      <Td color="brand.100">{reading.Note}</Td>
+                      <Td color="brand.100" className="table-details">
+                        {reading.notes}
+                      </Td>
                       <Td color="brand.100">
                         <IconContext.Provider
                           value={{ className: "delete-icon" }}
@@ -143,15 +187,15 @@ const Readings = () => {
         ref={modalRef}
         totalReadings={readings.length}
         addReadings={addReadings}
+        // editReadings={editReading}
       />
       <Button
-        bg="brand.200"
         className="float-button p-5"
         size="lg"
         onClick={() => modalRef.current.onAddReading()}
       >
-        <IconContext.Provider value={{ className: "top-react-icons" }}>
-          <AiOutlinePlus size={30} color="white" />
+        <IconContext.Provider value={{ className: "float-button-icon" }}>
+          <AiOutlinePlus size={35} />
         </IconContext.Provider>
       </Button>
     </div>

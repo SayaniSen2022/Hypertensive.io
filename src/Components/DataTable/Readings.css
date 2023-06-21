@@ -1,0 +1,25 @@
+.table-head {
+  text-align: center;
+  padding: 5px;
+}
+.table-details {
+  text-align: center;
+  padding: 5px;
+}
+
+.delete-icon {
+  margin-left: 20px;
+  color: rgb(226, 74, 74);
+}
+.delete-icon:hover {
+  color: rgb(216, 122, 122);
+  cursor: pointer;
+}
+.edit-icon {
+  margin-left: 10px;
+  color: #0cec62a9;
+}
+.edit-icon:hover {
+  color: rgba(44, 243, 127, 0.863);
+  cursor: pointer;
+}
