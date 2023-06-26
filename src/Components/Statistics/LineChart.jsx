@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "./LineChart.css";
 
 import {
@@ -13,7 +13,7 @@ import { Line } from "react-chartjs-2";
 ChartJS.register(LineElement, CategoryScale, LinearScale, PointElement);
 
 const LineChart = (props) => {
-  const labels = props.chartData.map((data) => data.date);
+  const labels = props.chartData.map((label) => label.date.slice(0, 10));
   const data = {
     labels: labels,
     datasets: [

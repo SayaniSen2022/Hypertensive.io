@@ -1,13 +1,16 @@
+@import url("https://fonts.googleapis.com/css2?family=Ysabeau+SC:wght@600&display=swap");
+
 .top-nav {
   position: sticky;
   top: 0;
   padding: 0.25em;
+  /* background-color: #20274b; */
 }
 .logo {
   font-size: 30px;
   font-weight: 700;
-  font-family: "Fira Sans";
   float: left;
+  font-family: "Ysabeau SC", sans-serif;
   /* color: #d4e0e7; */
 }
 .logo:hover {
@@ -16,8 +19,8 @@
 
 .nav {
   display: flex;
-  /* list-style: none; */
   font-size: 20px;
+  font-family: "Ysabeau SC", sans-serif;
 }
 
 .nav li {

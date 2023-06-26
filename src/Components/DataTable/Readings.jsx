@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { IconContext } from "react-icons";
 import { AiOutlinePlus } from "react-icons/ai";
-import { Button } from "@chakra-ui/react";
+import { Button, Textarea } from "@chakra-ui/react";
 import { MdDelete } from "react-icons/md";
 import { AiFillEdit } from "react-icons/ai";
 import { useToast } from "@chakra-ui/react";
@@ -19,6 +19,8 @@ import {
   Th,
   Td,
   TableContainer,
+  Text,
+  Box,
 } from "@chakra-ui/react";
 
 const getLocalData = () => {
@@ -95,61 +97,49 @@ const Readings = () => {
       )}
       {readings.length > 0 && (
         <div>
-          <TableContainer className="p-2 border-2 rounded m-2">
-            <Table size="sm">
+          <TableContainer className="border-2 rounded m-2">
+            <Table>
               <Thead>
                 <Tr>
-                  <Th className="table-head">Date</Th>
-                  <Th className="table-head">Time</Th>
-                  <Th className="table-head" isNumeric>
+                  <Th textAlign="center">Date</Th>
+                  <Th textAlign="center">Time</Th>
+                  <Th textAlign="center" isNumeric>
                     Systolic
                   </Th>
-                  <Th className="table-head" isNumeric>
+                  <Th textAlign="center" isNumeric>
                     Diastolic
                   </Th>
-                  <Th className="table-head" isNumeric>
+                  <Th textAlign="center" isNumeric>
                     Pulse
                   </Th>
-                  <Th className="table-head">Irregular Heartbeat</Th>
-                  <Th className="table-head">Notes</Th>
-                  <Th>Delete</Th>
-                  <Th>Edit</Th>
+                  <Th textAlign="center">Irregular Heartbeat</Th>
+                  <Th textAlign="center">Notes</Th>
+                  <Th textAlign="center">Delete</Th>
+                  <Th textAlign="center">Edit</Th>
                 </Tr>
               </Thead>
               <Tbody>
                 {readings.map((reading) => {
                   return (
                     <Tr key={reading.id}>
-                      <Td color="brand.100" className="table-details">
-                        {format(reading.date, "dd/MM/yyyy")}
+                      <Td>{format(reading.date, "dd/MM/yyyy")}</Td>
+                      <Td>{format(reading.date, "h:mm aa")}</Td>
+                      <Td>{reading.systolic}</Td>
+                      <Td>{reading.diastolic}</Td>
+                      <Td>{reading.pulse}</Td>
+                      <Td>{reading.irregularBeats ? "yes" : "no"}</Td>
+                      <Td>
+                        <Textarea
+                          textAlign="start"
+                          size="sm"
+                          overflow="hidden"
+                          border="none"
+                          value={reading.notes}
+                          resize="none"
+                          isReadOnly
+                        />
                       </Td>
-                      <Td color="brand.100" className="table-details">
-                        {format(reading.date, "h:mm aa")}
-                      </Td>
-                      <Td color="brand.100" isNumeric className="table-details">
-                        {reading.systolic}
-                      </Td>
-                      <Td color="brand.100" isNumeric className="table-details">
-                        {reading.diastolic}
-                      </Td>
-                      <Td color="brand.100" isNumeric className="table-details">
-                        {reading.pulse}
-                      </Td>
-                      <Td
-                        className="table-details"
-                        style={{
-                          color:
-                            reading.irregularBeats === true
-                              ? "#FF5C5C"
-                              : "lightgreen",
-                        }}
-                      >
-                        {reading.irregularBeats ? "yes" : "no"}
-                      </Td>
-                      <Td color="brand.100" className="table-details">
-                        {reading.notes}
-                      </Td>
-                      <Td color="brand.100">
+                      <Td>
                         <IconContext.Provider
                           value={{ className: "delete-icon" }}
                         >
@@ -164,7 +154,7 @@ const Readings = () => {
                           />
                         </IconContext.Provider>
                       </Td>
-                      <Td color="brand.100">
+                      <Td>
                         <IconContext.Provider
                           value={{ className: "edit-icon" }}
                         >

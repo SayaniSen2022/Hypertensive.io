@@ -73,9 +73,8 @@ const InputModal = forwardRef((props, ref) => {
   };
   const notesChangeHandler = (event) => {
     const textdata = event.target.value;
-    console.log(textdata.length);
-    if (textdata.length > 50) {
-      return alert("Notes cannot exceed more than 50 characters in length!");
+    if (textdata.length > 100) {
+      return alert("Notes cannot exceed more than 100 characters in length!");
     } else {
       setNotes(textdata);
     }

@@ -12,7 +12,7 @@ const Navbar = () => {
   return (
     <>
       <nav className="top-nav">
-        <span className="logo">
+        <span className="logo flex">
           <NavLink to="/" className="flex">
             <IconContext.Provider value={{ className: "top-react-icons m-2" }}>
               <BsSuitHeartFill style={{ color: "#b5a1ff" }} />

@@ -10,9 +10,11 @@ const ToggleColor = () => {
         top="0"
         right="0"
         margin="0.5rem"
+        variant="ghost"
+        size="sm"
       >
         {colorMode === "dark" ? (
-          <SunIcon color="yellow.500" />
+          <SunIcon color="yellow.300" />
         ) : (
           <MoonIcon color="blue.700" />
         )}
