@@ -8,15 +8,15 @@ const ToggleColor = () => {
         onClick={() => toggleColorMode()}
         pos="absolute"
         top="0"
-        right="0"
-        margin="0.5rem"
+        right="10"
+        margin="0.7rem"
         variant="ghost"
         size="sm"
       >
         {colorMode === "dark" ? (
-          <SunIcon color="yellow.300" />
+          <SunIcon w={6} h={5} color="yellow.300" />
         ) : (
-          <MoonIcon color="blue.700" />
+          <MoonIcon w={6} h={5} color="blue.700" />
         )}
       </Button>
     </>

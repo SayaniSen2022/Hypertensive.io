@@ -1,37 +1,104 @@
 @import url("https://fonts.googleapis.com/css2?family=Ysabeau+SC:wght@600&display=swap");
 
-.top-nav {
+.navbar {
+  display: flex;
   position: sticky;
+  justify-content: flex-start;
+  align-items: center;
   top: 0;
-  padding: 0.25em;
-  /* background-color: #20274b; */
+  background: #323232;
 }
-.logo {
-  font-size: 30px;
-  font-weight: 700;
-  float: left;
+.brand-title {
+  font-size: 2rem;
   font-family: "Ysabeau SC", sans-serif;
-  /* color: #d4e0e7; */
+  font-weight: 700;
+  margin: 0.5rem;
 }
-.logo:hover {
+
+.brand-title:hover {
   color: #b5a1ff;
 }
 
-.nav {
+.navbar-links {
+  height: 100%;
+}
+
+.navbar-links ul {
   display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar-links li {
+  list-style: none;
   font-size: 20px;
   font-family: "Ysabeau SC", sans-serif;
 }
 
-.nav li {
-  width: 7em;
-  padding: 0.5em;
-  /* color: #d4e0e7; */
+.navbar-links li a {
+  display: block;
+  text-decoration: none;
+  padding: 1rem;
 }
-.nav li:hover {
+.navbar-links li:hover {
   color: #b5a1ff;
 }
+
+.toggle-button {
+  position: absolute;
+  top: 1.3rem;
+  right: 1rem;
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 21px;
+}
+
+.toggle-button .bar {
+  height: 3px;
+  width: 100%;
+  background-color: white;
+  border-radius: 10px;
+}
 .top-react-icons {
-  margin-right: 3px;
-  margin-top: 3px;
+  display: inline;
+  margin-top: -2px;
+  margin-right: 4px;
+}
+.theme-switch {
+  display: inherit;
+}
+
+@media (max-width: 650px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .toggle-button {
+    display: flex;
+  }
+
+  .navbar-links {
+    display: none;
+    width: 100%;
+  }
+
+  .navbar-links ul {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .navbar-links ul li {
+    text-align: center;
+  }
+
+  .navbar-links ul li a {
+    padding: 0.5rem 1rem;
+  }
+
+  .navbar-links.active {
+    display: flex;
+  }
 }
