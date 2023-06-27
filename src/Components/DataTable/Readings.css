@@ -20,7 +20,7 @@ Table {
   cursor: pointer;
 }
 
-@media (max-width: 650px) {
+@media (max-width: 750px) {
   Th {
     display: none;
   }

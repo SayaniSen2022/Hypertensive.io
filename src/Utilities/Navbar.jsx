@@ -6,9 +6,12 @@ import { BsClipboardData } from "react-icons/bs";
 import { BsSuitHeartFill } from "react-icons/bs";
 import "./Navbar.css";
 import ToggleColor from "../Theme/ToggleColor";
+import { useColorMode } from "@chakra-ui/react";
+import theme from "../Theme/theme";
 
 const Navbar = () => {
   const [showMenu, setShowMenu] = useState(false);
+
   return (
     <>
       <nav className="navbar">
