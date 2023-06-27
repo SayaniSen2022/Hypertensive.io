@@ -1,17 +1,19 @@
 import { useState, useRef, useEffect } from "react";
 import { IconContext } from "react-icons";
 import { AiOutlinePlus } from "react-icons/ai";
-import { Button, Textarea } from "@chakra-ui/react";
 import { MdDelete } from "react-icons/md";
 import { AiFillEdit } from "react-icons/ai";
 import { useToast } from "@chakra-ui/react";
 import { format } from "date-fns";
 import InputModal from "./InputModal";
 import "./InputModal.css";
-import { Alert, AlertIcon } from "@chakra-ui/react";
 import "./Readings.css";
 
 import {
+  Alert,
+  AlertIcon,
+  Button,
+  Textarea,
   Table,
   Thead,
   Tbody,
@@ -19,8 +21,10 @@ import {
   Th,
   Td,
   TableContainer,
-  Text,
+  Divider,
   Box,
+  HStack,
+  VStack,
 } from "@chakra-ui/react";
 
 const getLocalData = () => {
@@ -173,6 +177,73 @@ const Readings = () => {
           </TableContainer>
         </div>
       )}
+      {readings.length > 0 && (
+        <div className="mobile">
+          <VStack className="container">
+            {readings.map((reading) => {
+              return (
+                <>
+                  <HStack spacing="20px" className="mb-2">
+                    <Box className="date" borderRadius="5px" border="ridge">
+                      {format(reading.date, "dd/MM/yyyy")}
+                    </Box>
+
+                    <Box className="time" borderRadius="5px" border="ridge">
+                      {format(reading.date, "h:mm aa")}
+                    </Box>
+                  </HStack>
+                  <HStack spacing="20px" className="mb-2">
+                    <Box
+                      className="systolic-data"
+                      borderRadius="5px"
+                      border="ridge"
+                    >
+                      {reading.systolic}
+                    </Box>
+                    <span>/</span>
+                    <Box
+                      className="diastolic-data"
+                      borderRadius="5px"
+                      border="ridge"
+                    >
+                      {reading.diastolic}
+                    </Box>
+                    <Box
+                      className="pulse-data"
+                      borderRadius="5px"
+                      border="ridge"
+                    >
+                      {reading.pulse}
+                    </Box>
+                  </HStack>
+                  <Box className="checkbox">
+                    {" "}
+                    Irregular Heartbeat:
+                    {reading.irregularBeats ? " yes" : " no"}
+                  </Box>
+
+                  <Textarea
+                    value={reading.notes}
+                    placeholder="Note..."
+                    className="note-box"
+                    borderRadius="5px"
+                    border="ridge"
+                    resize="none"
+                    isReadOnly
+                  />
+
+                  <Divider
+                    borderColor="purple.200"
+                    borderWidth="1px"
+                    variant="dashed"
+                  />
+                </>
+              );
+            })}
+          </VStack>
+        </div>
+      )}
+
       <InputModal
         ref={modalRef}
         totalReadings={readings.length}
