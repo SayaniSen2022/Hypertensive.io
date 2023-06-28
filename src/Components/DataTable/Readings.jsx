@@ -107,21 +107,33 @@ const Readings = () => {
             <Table>
               <Thead>
                 <Tr>
-                  <Th textAlign="center">Date</Th>
-                  <Th textAlign="center">Time</Th>
-                  <Th textAlign="center" isNumeric>
+                  <Th id="heading" textAlign="center">
+                    Date
+                  </Th>
+                  <Th id="heading" textAlign="center">
+                    Time
+                  </Th>
+                  <Th id="heading" textAlign="center" isNumeric>
                     Systolic
                   </Th>
-                  <Th textAlign="center" isNumeric>
+                  <Th id="heading" textAlign="center" isNumeric>
                     Diastolic
                   </Th>
-                  <Th textAlign="center" isNumeric>
+                  <Th id="heading" textAlign="center" isNumeric>
                     Pulse
                   </Th>
-                  <Th textAlign="center">Irregular Heartbeat</Th>
-                  <Th textAlign="center">Notes</Th>
-                  <Th textAlign="center">Delete</Th>
-                  <Th textAlign="center">Edit</Th>
+                  <Th id="heading" textAlign="center">
+                    Irregular Heartbeat
+                  </Th>
+                  <Th id="heading" textAlign="center">
+                    Notes
+                  </Th>
+                  <Th id="heading" textAlign="center">
+                    Delete
+                  </Th>
+                  <Th id="heading" textAlign="center">
+                    Edit
+                  </Th>
                 </Tr>
               </Thead>
               <Tbody>
@@ -207,17 +219,9 @@ const Readings = () => {
                     </ResBox>
                   </HStack>
                   <HStack>
-                    <span className="heartbeat">Irregular Heartbeat:</span>
-                    <Box
-                      style={{
-                        color:
-                          reading.irregularBeats === "yes"
-                            ? "red"
-                            : "lightgreen",
-                      }}
-                    >
-                      {reading.irregularBeats ? " yes" : " no"}
-                    </Box>
+                    <span className="heartbeat">Irregular Heartbeat:</span>?
+                    "#FF5C5C" ? "#FF5C5C"
+                    <Box>{reading.irregularBeats ? " yes" : " no"}</Box>
                   </HStack>
 
                   <Textarea
@@ -231,7 +235,7 @@ const Readings = () => {
                   />
 
                   <Divider
-                    borderColor="purple.200"
+                    borderColor="#0acef5"
                     borderWidth="1px"
                     variant="dashed"
                   />

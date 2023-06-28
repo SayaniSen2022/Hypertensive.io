@@ -1,5 +1,5 @@
 .float-button {
-  background-color: rgb(22, 81, 136);
+  background-color: #20aac5;
   position: fixed;
   bottom: 10px;
   right: 10px;
@@ -8,7 +8,8 @@
   overflow: hidden;
 }
 .float-button:hover {
-  background-color: rgb(6, 25, 100);
+  background-color: #58c1d6;
+  transition: 0.5s ease-in-out;
 }
 .float-button-icon {
   color: white;

@@ -1,8 +1,9 @@
 Table {
   width: 100%;
-  /* background-color: #323232; */
 }
-
+#heading {
+  color: #20aac5;
+}
 .delete-icon {
   margin-left: 20px;
   color: rgb(226, 74, 74);

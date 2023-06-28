@@ -6,8 +6,6 @@ import { BsClipboardData } from "react-icons/bs";
 import { BsSuitHeartFill } from "react-icons/bs";
 import "./Navbar.css";
 import ToggleColor from "../Theme/ToggleColor";
-import { useColorMode } from "@chakra-ui/react";
-import theme from "../Theme/theme";
 
 const Navbar = () => {
   const [showMenu, setShowMenu] = useState(false);
@@ -18,7 +16,7 @@ const Navbar = () => {
         <div className="brand-title">
           <NavLink to="/" className="flex">
             <IconContext.Provider value={{ className: "top-react-icons m-2" }}>
-              <BsSuitHeartFill style={{ color: "#b5a1ff" }} />
+              <BsSuitHeartFill style={{ color: "#FFC0CB" }} />
             </IconContext.Provider>
             Hypertensive.io
           </NavLink>
@@ -37,7 +35,7 @@ const Navbar = () => {
             <li>
               <NavLink to="/readings">
                 <IconContext.Provider value={{ className: "top-react-icons" }}>
-                  <AiOutlineDatabase style={{ color: "#FFCD58" }} />
+                  <AiOutlineDatabase style={{ color: "#ECF87F" }} />
                 </IconContext.Provider>
                 Readings
               </NavLink>
@@ -45,7 +43,7 @@ const Navbar = () => {
             <li>
               <NavLink to="/statistics">
                 <IconContext.Provider value={{ className: "top-react-icons" }}>
-                  <BsClipboardData style={{ color: "#719F1E" }} />
+                  <BsClipboardData style={{ color: "#2EFF2E" }} />
                 </IconContext.Provider>
                 Statistics
               </NavLink>
