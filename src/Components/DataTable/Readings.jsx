@@ -197,24 +197,24 @@ const Readings = () => {
             {readings.map((reading) => {
               return (
                 <>
-                  <HStack spacing="80px">
-                    <ResBox label="Date" border="ridge" width="8.5rem">
+                  <HStack spacing="50px">
+                    <ResBox label="Date" width="9rem">
                       {format(reading.date, "dd/MM/yyyy")}
                     </ResBox>
-                    <ResBox label="Time" border="ridge" width="7.5rem">
+                    <ResBox label="Time" width="9.5rem">
                       {format(reading.date, "h:mm aa")}
                     </ResBox>
                   </HStack>
 
                   <HStack>
-                    <ResBox label="Systolic" border="ridge" width="6.25rem">
+                    <ResBox label="Systolic" width="7rem">
                       {reading.systolic}
                     </ResBox>
                     <span className="slash">/</span>
-                    <ResBox label="Diastolic" border="ridge" width="6.25rem">
+                    <ResBox label="Diastolic" width="7rem">
                       {reading.diastolic}
                     </ResBox>
-                    <ResBox label="Pulse" border="ridge" width="6.25rem">
+                    <ResBox label="Pulse" width="6rem">
                       {reading.pulse}
                     </ResBox>
                   </HStack>
