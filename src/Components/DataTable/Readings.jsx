@@ -8,6 +8,7 @@ import { format } from "date-fns";
 import InputModal from "./InputModal";
 import "./InputModal.css";
 import "./Readings.css";
+import ResBox from "./ResBox";
 
 import {
   Alert,
@@ -23,6 +24,7 @@ import {
   TableContainer,
   Divider,
   Box,
+  Stack,
   HStack,
   VStack,
 } from "@chakra-ui/react";
@@ -183,44 +185,40 @@ const Readings = () => {
             {readings.map((reading) => {
               return (
                 <>
-                  <HStack spacing="20px" className="mb-2">
-                    <Box className="date" borderRadius="5px" border="ridge">
+                  <HStack spacing="80px">
+                    <ResBox label="Date" border="ridge" width="8.5rem">
                       {format(reading.date, "dd/MM/yyyy")}
-                    </Box>
-
-                    <Box className="time" borderRadius="5px" border="ridge">
+                    </ResBox>
+                    <ResBox label="Time" border="ridge" width="7.5rem">
                       {format(reading.date, "h:mm aa")}
-                    </Box>
+                    </ResBox>
                   </HStack>
-                  <HStack spacing="20px" className="mb-2">
-                    <Box
-                      className="systolic-data"
-                      borderRadius="5px"
-                      border="ridge"
-                    >
+
+                  <HStack>
+                    <ResBox label="Systolic" border="ridge" width="6.25rem">
                       {reading.systolic}
-                    </Box>
-                    <span>/</span>
-                    <Box
-                      className="diastolic-data"
-                      borderRadius="5px"
-                      border="ridge"
-                    >
+                    </ResBox>
+                    <span className="slash">/</span>
+                    <ResBox label="Diastolic" border="ridge" width="6.25rem">
                       {reading.diastolic}
-                    </Box>
-                    <Box
-                      className="pulse-data"
-                      borderRadius="5px"
-                      border="ridge"
-                    >
+                    </ResBox>
+                    <ResBox label="Pulse" border="ridge" width="6.25rem">
                       {reading.pulse}
+                    </ResBox>
+                  </HStack>
+                  <HStack>
+                    <span className="heartbeat">Irregular Heartbeat:</span>
+                    <Box
+                      style={{
+                        color:
+                          reading.irregularBeats === "yes"
+                            ? "red"
+                            : "lightgreen",
+                      }}
+                    >
+                      {reading.irregularBeats ? " yes" : " no"}
                     </Box>
                   </HStack>
-                  <Box className="checkbox">
-                    {" "}
-                    Irregular Heartbeat:
-                    {reading.irregularBeats ? " yes" : " no"}
-                  </Box>
 
                   <Textarea
                     value={reading.notes}

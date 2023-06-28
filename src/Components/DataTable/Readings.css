@@ -28,54 +28,21 @@ Table {
     display: none;
   }
   .mobile {
-    margin-top: 2rem;
+    margin-top: 1rem;
     margin-left: 1.5rem;
     margin-right: 1.5rem;
     display: flex;
     justify-content: flex-start;
-    align-items: flex-start;
-    text-align: center;
+  }
+  .slash {
+    position: relative;
+    top: 12px;
+  }
+  .heartbeat {
+    text-align: left;
+    margin-left: -10rem;
   }
 
-  .date {
-    width: 10em;
-    height: 2.5em;
-    text-align: center;
-    padding: 0.25rem;
-    border-color: rgba(121, 112, 112, 0.4);
-  }
-  .time {
-    width: 9.5em;
-    height: 2.5em;
-    text-align: center;
-    padding: 0.25rem;
-    border-color: rgba(121, 112, 112, 0.4);
-  }
-  .systolic-data {
-    width: 5.5em;
-    height: 2.5em;
-    text-align: center;
-    padding: 0.25rem;
-    border-color: rgba(121, 112, 112, 0.4);
-  }
-  .diastolic-data {
-    width: 5.5em;
-    height: 2.5em;
-    text-align: center;
-    padding: 0.25rem;
-    border-color: rgba(121, 112, 112, 0.4);
-  }
-  .pulse-data {
-    width: 5.5em;
-    height: 2.5em;
-    text-align: center;
-    padding: 0.25rem;
-    border-color: rgba(121, 112, 112, 0.4);
-  }
-  .checkbox {
-    width: 21em;
-    text-align: left;
-  }
   .note-box {
     width: 21em;
     height: 6em;

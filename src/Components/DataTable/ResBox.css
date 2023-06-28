@@ -1,0 +1,13 @@
+.label-tag {
+  font-size: 11px;
+  top: 10px;
+  position: relative;
+  left: -30px;
+}
+.custom-box {
+  border-radius: 5px;
+  height: 2.5em;
+  text-align: center;
+  padding: 0.25rem;
+  border-color: rgba(121, 112, 112, 0.4);
+}
