@@ -103,9 +103,13 @@ const Readings = () => {
       )}
       {readings.length > 0 && (
         <div>
-          <TableContainer className="border-2 rounded m-2">
-            <Table>
-              <Thead>
+          <TableContainer
+            className="border-2 rounded m-2"
+            overflowY="auto"
+            overflowX="auto"
+          >
+            <Table variant="striped" colorScheme="blackAlpha">
+              <Thead position="sticky" top="0">
                 <Tr>
                   <Th id="heading" textAlign="center">
                     Date
@@ -136,22 +140,26 @@ const Readings = () => {
                   </Th>
                 </Tr>
               </Thead>
+
               <Tbody>
                 {readings.map((reading) => {
                   return (
                     <Tr key={reading.id}>
                       <Td>{format(reading.date, "dd/MM/yyyy")}</Td>
                       <Td>{format(reading.date, "h:mm aa")}</Td>
-                      <Td>{reading.systolic}</Td>
-                      <Td>{reading.diastolic}</Td>
-                      <Td>{reading.pulse}</Td>
-                      <Td>{reading.irregularBeats ? "yes" : "no"}</Td>
+                      <Td textAlign="center">{reading.systolic}</Td>
+                      <Td textAlign="center">{reading.diastolic}</Td>
+                      <Td textAlign="center">{reading.pulse}</Td>
+                      <Td textAlign="center">
+                        {reading.irregularBeats ? "yes" : "no"}
+                      </Td>
                       <Td>
                         <Textarea
-                          textAlign="start"
-                          size="sm"
+                          textAlign="center"
                           overflow="hidden"
                           border="none"
+                          size="sm"
+                          placeholder="Note..."
                           value={reading.notes}
                           resize="none"
                           isReadOnly
