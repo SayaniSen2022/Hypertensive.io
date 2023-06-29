@@ -2,3 +2,10 @@
   margin: 3em;
   width: 50%;
 }
+
+@media (max-width: 750px) {
+  .line-chart {
+    width: 90%;
+    margin: 1em;
+  }
+}
