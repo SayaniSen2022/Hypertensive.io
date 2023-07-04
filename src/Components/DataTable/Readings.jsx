@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, Fragment } from "react";
 import { IconContext } from "react-icons";
 import { AiOutlinePlus } from "react-icons/ai";
 import { MdDelete } from "react-icons/md";
@@ -33,7 +33,6 @@ const getLocalData = () => {
   let isLoggedIn = false;
   if (isLoggedIn === false) {
     let localData = JSON.parse(localStorage.getItem("readingData"));
-    console.log(localData);
 
     if (localData) {
       localData = localData.map((e) => {
@@ -45,17 +44,6 @@ const getLocalData = () => {
       return [];
     }
   }
-  //need to fetch data from API if isLoggedIn will be true
-  /*
-    fetch('api path').then(res => {
-      if(res){
-        return res.json()
-      }
-      else{
-        throw new Error("no data")
-      }
-    }).then(data=>{}).catch(err => {console.error(err);});
-  */
 };
 
 const Readings = () => {
@@ -64,26 +52,36 @@ const Readings = () => {
   useEffect(() => {
     localStorage.setItem("readingData", JSON.stringify(readings));
   }, [readings]);
-  // console.log(localStorage.getItem("readingData"));
 
   const modalRef = useRef();
 
   const toast = useToast();
 
-  // const editReading = (editedReading) => {
-  //   setReadings([...readings, editedReading]);
-  //   toast({
-  //     title: "Success!",
-  //     description: "New reading edited successfully.",
-  //     status: "success",
-  //     duration: 2000,
-  //     isClosable: true,
-  //   });
-  // };
+  const editReading = (editedReading) => {
+    const prevArr = [...readings];
+    for (let i = 0; i < prevArr.length; i++) {
+      if (prevArr[i].id === editedReading.id) {
+        prevArr[i].date = editedReading.date;
+        prevArr[i].systolic = editedReading.systolic;
+        prevArr[i].diastolic = editedReading.diastolic;
+        prevArr[i].pulse = editedReading.pulse;
+        prevArr[i].irregularBeats = editedReading.irregularBeats;
+        prevArr[i].notes = editedReading.notes;
+        break;
+      }
+    }
+    setReadings(prevArr);
+    toast({
+      title: "Success!",
+      description: "Reading edited successfully.",
+      status: "success",
+      duration: 2000,
+      isClosable: true,
+    });
+  };
 
   const addReadings = (newReading) => {
     setReadings([...readings, newReading]);
-    console.log(newReading);
     toast({
       title: "Success!",
       description: "New reading added successfully.",
@@ -142,9 +140,9 @@ const Readings = () => {
               </Thead>
 
               <Tbody>
-                {readings.map((reading) => {
-                  return (
-                    <Tr key={reading.id}>
+                {readings.map((reading) => (
+                  <Fragment>
+                    <Tr>
                       <Td>{format(reading.date, "dd/MM/yyyy")}</Td>
                       <Td>{format(reading.date, "h:mm aa")}</Td>
                       <Td textAlign="center">{reading.systolic}</Td>
@@ -192,8 +190,8 @@ const Readings = () => {
                         </IconContext.Provider>
                       </Td>
                     </Tr>
-                  );
-                })}
+                  </Fragment>
+                ))}
               </Tbody>
             </Table>
           </TableContainer>
@@ -204,7 +202,7 @@ const Readings = () => {
           <VStack className="container">
             {readings.map((reading) => {
               return (
-                <>
+                <Fragment>
                   <HStack spacing="50px">
                     <ResBox label="Date" width="9rem">
                       {format(reading.date, "dd/MM/yyyy")}
@@ -247,7 +245,7 @@ const Readings = () => {
                     borderWidth="1px"
                     variant="dashed"
                   />
-                </>
+                </Fragment>
               );
             })}
           </VStack>
@@ -258,7 +256,7 @@ const Readings = () => {
         ref={modalRef}
         totalReadings={readings.length}
         addReadings={addReadings}
-        // editReadings={editReading}
+        editReadings={editReading}
       />
       <Button
         className="float-button p-5"

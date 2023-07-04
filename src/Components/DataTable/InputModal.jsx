@@ -29,6 +29,7 @@ const InputModal = forwardRef((props, ref) => {
   });
 
   const onAddReading = () => {
+    setIsEdit(false);
     onOpen();
     setSystolic("");
     setDiastolic("");
@@ -38,7 +39,9 @@ const InputModal = forwardRef((props, ref) => {
   };
 
   const onEditReading = (reading) => {
+    setIsEdit(true);
     onOpen();
+    setReadingId(reading.id);
     setStartDate(reading.date);
     setSystolic(reading.systolic);
     setDiastolic(reading.diastolic);
@@ -54,11 +57,14 @@ const InputModal = forwardRef((props, ref) => {
       setPulse("");
     },
   }); //for modal
+
   const [systolic, setSystolic] = useState("");
   const [diastolic, setDiastolic] = useState("");
   const [pulse, setPulse] = useState("");
   const [notes, setNotes] = useState("");
   const [isIrregular, setIsIrregular] = useState(false);
+  const [isEdit, setIsEdit] = useState(false);
+  const [readingId, setReadingId] = useState(null);
 
   const systolicChangeHandler = (event) => {
     setSystolic(event.target.value);
@@ -82,34 +88,20 @@ const InputModal = forwardRef((props, ref) => {
   const heartBeatHandler = () => {
     setIsIrregular(!isIrregular);
   };
-  // const handleEditSubmit = () => {
-  //   onClose();
-  //   props.editReadings(createEditedDataObject());
-  //   resetReadings();
-  // };
-  // const createEditedDataObject = () => {
-  //   const editedData = {
-  //     id: props.totalReadings,
-  //     systolic: parseInt(systolic),
-  //     diastolic: parseInt(diastolic),
-  //     pulse: parseInt(pulse),
-  //     date: startDate,
-  //     notes: notes,
-  //     irregularBeats: isIrregular,
-  //   };
-  //   return editedData;
-  // };
 
   const handleSubmit = () => {
-    //need to add some logic to check if its a new reading or an edited reading
     onClose();
-    props.addReadings(createNewDataObject());
+    if (isEdit) {
+      props.editReadings(createNewDataObject());
+    } else {
+      props.addReadings(createNewDataObject());
+    }
 
     resetReadings();
   };
   const createNewDataObject = () => {
     const newData = {
-      id: props.totalReadings + 1,
+      id: isEdit ? readingId : props.totalReadings + 1,
       systolic: parseInt(systolic),
       diastolic: parseInt(diastolic),
       pulse: parseInt(pulse),
@@ -134,7 +126,7 @@ const InputModal = forwardRef((props, ref) => {
       <Modal onClose={onClose} isOpen={isOpen} isCentered>
         <ModalOverlay />
         <ModalContent>
-          <ModalHeader>New Reading</ModalHeader>
+          <ModalHeader>{isEdit ? "Edit" : "New"} Reading</ModalHeader>
           <ModalCloseButton />
           <ModalBody>
             <FormControl>
@@ -233,14 +225,6 @@ const InputModal = forwardRef((props, ref) => {
             >
               Save
             </Button>
-            {/* <Button
-              className="save-edit-btn"
-              type="submit"
-              colorScheme="green"
-              onClick={handleEditSubmit}
-            >
-              Save Edit
-            </Button> */}
           </ModalFooter>
         </ModalContent>
       </Modal>
