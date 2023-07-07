@@ -239,6 +239,22 @@ const Readings = () => {
                     resize="none"
                     isReadOnly
                   />
+                  <HStack spacing="20px">
+                    <IconContext.Provider value={{ className: "delete-icon" }}>
+                      <MdDelete
+                        onClick={() => {
+                          let copy = [...readings];
+                          copy = copy.filter((item) => item.id !== reading.id);
+                          setReadings(copy);
+                        }}
+                      />
+                    </IconContext.Provider>
+                    <IconContext.Provider value={{ className: "edit-icon" }}>
+                      <AiFillEdit
+                        onClick={() => modalRef.current.onEditReading(reading)}
+                      />
+                    </IconContext.Provider>
+                  </HStack>
 
                   <Divider
                     borderColor="#0acef5"
