@@ -6,14 +6,6 @@ Technologies used: React, JS, HTML, CSS, React Router, Tailwind, Chakra UI, Char
 
 View [here](https://hypertensive-io.netlify.app/)
 
-### Inspiration
-I was inspired to build this application watching a friend suffer from hypertension induced anxiety attacks. The continuous stress of living with a chronic condition and dependency on medicines from a young age led to  health related anxiety which further worsened the condition. It was a vicious cycle and a daily struggle.
-
-One thing we noticed in that period, that meticulously keeping redord of bp-data and being aware of the fact that medicines having a positive impact on health helped in reducing anxiety to a large extent. It was like being on top of game and knowing for sure that things are going well inside the body.
-
-Thus came the idea to build our very own solution and maybe help those people in the process, who suffer from same kind of health induced anxiety and struggle on a daily basis.
-
-P.S.: My friend is perfectly fine now and is a fellow developer. This application is his brainchild and I am contributing on the frontend.
 
 ## Features
 Day/Night mode
