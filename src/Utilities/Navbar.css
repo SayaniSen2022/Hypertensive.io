@@ -1,5 +1,14 @@
 @import url("https://fonts.googleapis.com/css2?family=Ysabeau+SC:wght@600&display=swap");
 
+.customTooltip * {
+  color: #4a4a4a;
+  font-size: 18px;
+}
+
+.customTooltip .introjs-tooltip-title {
+  color: #0a41c9;
+}
+
 .navbar {
   display: flex;
   position: sticky;

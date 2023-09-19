@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import { useState, useEffect } from "react";
+import introJs from "intro.js";
 import { IconContext } from "react-icons";
 import { NavLink } from "react-router-dom";
 import { AiOutlineDatabase } from "react-icons/ai";
@@ -9,6 +10,52 @@ import ToggleColor from "../Theme/ToggleColor";
 
 const Navbar = () => {
   const [showMenu, setShowMenu] = useState(false);
+
+  useEffect(() => {
+    const intro = introJs();
+
+    intro.setOptions({
+      disableInteraction: true,
+      steps: [
+        {
+          title: "Welcome",
+          intro: "Hello user!!",
+        },
+        {
+          title: "Hypertensive.io",
+          element: ".brand-title",
+          intro:
+            "Hypertensive.io is our brand new app to help you be on your toes about health",
+          position: "bottom",
+        },
+        {
+          title: "Readings",
+          element: "#reading-link",
+          intro: "Input your readings",
+          position: "bottom",
+        },
+        {
+          title: "Statistics",
+          element: "#stats-link",
+          intro: "check your stats",
+          position: "bottom",
+        },
+        {
+          intro: "Tour is finished! stay healthy and leave review! Cheers!!",
+        },
+      ],
+      tooltipClass: "customTooltip",
+      showProgress: true,
+      dontShowAgain: false,
+      dontShowAgainCookieDays: 1,
+      showBullets: false,
+    });
+    intro.start();
+
+    return () => {
+      intro.exit();
+    };
+  }, []);
 
   return (
     <>
@@ -32,7 +79,7 @@ const Navbar = () => {
         </a>
         <div className={showMenu ? "navbar-links active" : "navbar-links"}>
           <ul>
-            <li>
+            <li id="reading-link">
               <NavLink to="/readings">
                 <IconContext.Provider value={{ className: "top-react-icons" }}>
                   <AiOutlineDatabase style={{ color: "#ECF87F" }} />
@@ -40,7 +87,7 @@ const Navbar = () => {
                 Readings
               </NavLink>
             </li>
-            <li>
+            <li id="stats-link">
               <NavLink to="/statistics">
                 <IconContext.Provider value={{ className: "top-react-icons" }}>
                   <BsClipboardData style={{ color: "#2EFF2E" }} />

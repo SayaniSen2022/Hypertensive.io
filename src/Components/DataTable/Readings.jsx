@@ -24,7 +24,6 @@ import {
   TableContainer,
   Divider,
   Box,
-  Stack,
   HStack,
   VStack,
 } from "@chakra-ui/react";
@@ -141,7 +140,7 @@ const Readings = () => {
 
               <Tbody>
                 {readings.map((reading) => (
-                  <Fragment>
+                  <Fragment key={reading.id}>
                     <Tr>
                       <Td>{format(reading.date, "dd/MM/yyyy")}</Td>
                       <Td>{format(reading.date, "h:mm aa")}</Td>
@@ -202,7 +201,7 @@ const Readings = () => {
           <VStack className="container">
             {readings.map((reading) => {
               return (
-                <Fragment>
+                <Fragment key={reading.id}>
                   <HStack spacing="50px">
                     <ResBox label="Date" width="9rem">
                       {format(reading.date, "dd/MM/yyyy")}
@@ -226,7 +225,6 @@ const Readings = () => {
                   </HStack>
                   <HStack>
                     <span className="heartbeat">Irregular Heartbeat:</span>?
-                    "#FF5C5C" ? "#FF5C5C"
                     <Box>{reading.irregularBeats ? " yes" : " no"}</Box>
                   </HStack>
 

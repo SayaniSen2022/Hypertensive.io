@@ -5,6 +5,7 @@ import { ColorModeScript } from "@chakra-ui/color-mode";
 import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
 import "./index.css";
+import "intro.js/introjs.css";
 import theme from "./Theme/theme.js";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
