@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import LineChart from "./LineChart";
 import PieChart from "./PieChart";
 import FilterData from "./FilterData";
@@ -6,7 +6,7 @@ import "./Statistics.css";
 
 const Statistics = () => {
   const [data] = useState(JSON.parse(localStorage.getItem("readingData")));
-  console.log(data);
+  // console.log(data);
 
   const [selectedValue, setSelectedValue] = useState("-1");
 
@@ -28,7 +28,7 @@ const Statistics = () => {
       );
     }
   });
-  console.log(filteredList);
+  // console.log(filteredList);
 
   const onFilterValueSelected = (dateRef) => {
     setSelectedValue(dateRef);
@@ -37,6 +37,7 @@ const Statistics = () => {
   return (
     <>
       <FilterData filterValueSelected={onFilterValueSelected} />
+
       <div className="chart-display">
         <LineChart chartData={filteredList} />
 

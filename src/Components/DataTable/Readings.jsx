@@ -6,6 +6,7 @@ import { AiFillEdit } from "react-icons/ai";
 import { useToast } from "@chakra-ui/react";
 import { format } from "date-fns";
 import InputModal from "./InputModal";
+import ReadingGuide from "./ReadingGuide";
 import "./InputModal.css";
 import "./Readings.css";
 import ResBox from "./ResBox";
@@ -93,10 +94,13 @@ const Readings = () => {
   return (
     <div>
       {readings.length === 0 && (
-        <Alert status="warning">
-          <AlertIcon />
-          Seems like you do not have any readings yet!
-        </Alert>
+        <>
+          <Alert status="warning">
+            <AlertIcon />
+            Seems like you do not have any readings yet!
+          </Alert>
+          <ReadingGuide />
+        </>
       )}
       {readings.length > 0 && (
         <div>
