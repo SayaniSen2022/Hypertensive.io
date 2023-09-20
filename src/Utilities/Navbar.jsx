@@ -11,6 +11,12 @@ import ToggleColor from "../Theme/ToggleColor";
 const Navbar = () => {
   const [showMenu, setShowMenu] = useState(false);
 
+  const getCurrentThemeStyling = () => {
+    let colorMode = localStorage.getItem("chakra-ui-color-mode");
+
+    return colorMode === "light" ? "customTooltip" : "customTooltipDark";
+  };
+
   useEffect(() => {
     const intro = introJs();
 
@@ -44,7 +50,7 @@ const Navbar = () => {
           intro: "Tour is finished! stay healthy and leave review! Cheers!!",
         },
       ],
-      tooltipClass: "customTooltip",
+      tooltipClass: getCurrentThemeStyling(),
       showProgress: true,
       dontShowAgain: false,
       dontShowAgainCookieDays: 1,
