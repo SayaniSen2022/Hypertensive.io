@@ -2,6 +2,12 @@ import { useEffect } from "react";
 import introJs from "intro.js";
 
 const ReadingGuide = () => {
+  const getCurrentTheme = () => {
+    let colorMode = localStorage.getItem("chakra-ui-color-mode");
+
+    return colorMode === "light" ? "customTooltip" : "customTooltipDark";
+  };
+
   useEffect(() => {
     const intro = introJs();
 
@@ -14,7 +20,7 @@ const ReadingGuide = () => {
           intro: "Click on the button to input data",
         },
       ],
-      tooltipClass: "customTooltip",
+      tooltipClass: getCurrentTheme(),
       dontShowAgain: false,
       dontShowAgainCookieDays: 1,
       showBullets: false,

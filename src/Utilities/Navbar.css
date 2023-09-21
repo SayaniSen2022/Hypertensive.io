@@ -7,23 +7,40 @@
 .customTooltipDark * {
   color: #fff;
   font-size: 18px;
-  background-color: #2c2c2c;
+  background-color: #2d3748;
 }
 
 .customTooltipDark .introjs-progress {
-  background-color: #2c2c2c;
+  background-color: #2d3748;
 }
 .introjs-tooltip.customTooltipDark {
-  background-color: #2c2c2c;
+  background-color: #2d3748;
+}
+.customTooltip .introjs-button {
+  border-radius: 0.375rem;
 }
 
-.customTooltipDark .introjs-tooltipbuttons {
-  border-top: 1px solid #2c2c2c;
+.customTooltipDark .introjs-button {
+  border-top: 1px solid #2d3748;
+  border-radius: 0.375rem;
 }
 
 .customTooltip .introjs-tooltip-title {
   color: #0a41c9;
   text-align: left;
+}
+
+.customTooltipDark .introjs-tooltip-title {
+  color: #54aaf0;
+  text-align: left;
+}
+
+.customTooltip .introjs-tooltip-header .introjs-skipbutton:hover {
+  color: red;
+}
+
+.customTooltipDark .introjs-tooltip-header .introjs-skipbutton:hover {
+  color: red;
 }
 
 .navbar {
