@@ -8,6 +8,8 @@ View [here](https://hypertensive-io.netlify.app/)
 
 
 ## Features
+User Onboarding
+
 Day/Night mode
 
 Table for data input
